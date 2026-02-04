@@ -692,7 +692,7 @@ Claude: Found 2 performance issues...
 
 Most false positives are low/medium severity. Start with high-only:
 
-```
+```text
 "review PR 123 --severity=high"
 "review my changes, only critical and high issues"
 ```
@@ -701,7 +701,7 @@ Most false positives are low/medium severity. Start with high-only:
 
 Narrow to specific categories you care about:
 
-```
+```text
 "security review PR 123"
 "review PR 123 --focus=bugs,security"
 "check only performance issues"
@@ -711,7 +711,7 @@ Narrow to specific categories you care about:
 
 In the same conversation, provide context:
 
-```
+```text
 "ignore the N+1 warning in admin routes - it's intentional, low traffic"
 "skip any type warnings in src/legacy/ - that's legacy code"
 "the raw SQL in migrations/ is fine, we use raw migrations"
@@ -722,8 +722,8 @@ In the same conversation, provide context:
 For persistent false positives that keep appearing:
 
 ```typescript
-// @review-ok: raw SQL intentional for migrations
-const query = `DROP TABLE old_data`;
+// @review-ok: parameterized query handled by ORM
+const query = `SELECT * FROM users WHERE id = ${sanitizedId}`;
 ```
 
 ```python
