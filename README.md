@@ -140,8 +140,8 @@ claude "review PR 123 and post comments"
 ### i18n (8 checks)
 - Hardcoded strings, date/number/currency formatting, RTL, pluralization
 
-### Documentation (6 checks)
-- README, API docs, JSDoc, changelog, setup instructions
+### Documentation (8 checks)
+- README, API docs, JSDoc, changelog, setup instructions, broken links, relative path errors
 
 ### DevOps (10 checks)
 - Health checks, graceful shutdown, retry, circuit breaker, observability
@@ -170,6 +170,7 @@ claude "review PR 123 and post comments"
 - **Git blame analysis** — Skips pre-existing issues, focuses on new changes
 - **Auto-skip logic** — Ignores draft PRs, trivial changes, docs-only updates
 - **Language detection** — Applies React/TS/Python/Node checks when relevant
+- **False positive controls** — Severity filters, focus modes, inline suppressions
 
 ## Example Output
 
@@ -271,6 +272,51 @@ You can modify the SKILL.md to:
 | **High** | Should fix before merge | XSS, N+1 queries, auth bypass |
 | **Medium** | Fix soon | DRY violations, missing tests |
 | **Low** | Nice to have | Naming, comments |
+
+## Handling False Positives
+
+The skill is designed to minimize false positives, but if you encounter them:
+
+### 1. Use severity filter
+
+```bash
+claude "review PR 123 --severity=high"
+```
+
+### 2. Use focus filter
+
+```bash
+claude "security review PR 123"
+claude "review PR 123 --focus=bugs,security"
+```
+
+### 3. Provide context in conversation
+
+```text
+"ignore the N+1 warning in admin routes - it's intentional, low traffic"
+"skip any type warnings in src/legacy/ - that's legacy code"
+```
+
+### 4. Inline suppression
+
+Add comments to suppress specific issues:
+
+```typescript
+// @review-ok: parameterized query handled by ORM
+const query = `SELECT * FROM users WHERE id = ${sanitizedId}`;
+```
+
+```python
+# @review-ok: global cache intentional for performance
+CACHE = {}
+```
+
+### 5. Report persistent issues
+
+If the same false positive keeps appearing, [open an issue](https://github.com/anthroos/claude-code-review-skill/issues) with:
+- File and line number
+- What was flagged
+- Why it's a false positive
 
 ## License
 
