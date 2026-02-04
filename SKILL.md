@@ -681,3 +681,75 @@ Claude: Found 2 performance issues...
 - Needs context for architectural decisions
 - GitHub API rate limits when posting many comments
 - Language-specific checks may vary in depth
+
+---
+
+## If you're getting false positives
+
+### Step 1: Use severity filter
+
+Most false positives are low/medium severity. Start with high-only:
+
+```
+"review PR 123 --severity=high"
+"review my changes, only critical and high issues"
+```
+
+### Step 2: Use focus filter
+
+Narrow to specific categories you care about:
+
+```
+"security review PR 123"
+"review PR 123 --focus=bugs,security"
+"check only performance issues"
+```
+
+### Step 3: Tell Claude to skip specific issues
+
+In the same conversation, provide context:
+
+```
+"ignore the N+1 warning in admin routes - it's intentional, low traffic"
+"skip any type warnings in src/legacy/ - that's legacy code"
+"the raw SQL in migrations/ is fine, we use raw migrations"
+```
+
+### Step 4: Add inline comment in code
+
+For persistent false positives that keep appearing:
+
+```typescript
+// @review-ok: raw SQL intentional for migrations
+const query = `DROP TABLE old_data`;
+```
+
+```python
+# @review-ok: mutable default is reset in __init__
+def __init__(self, items=[]):
+```
+
+### Step 5: Report to improve the skill
+
+If the same false positive keeps appearing across reviews:
+
+1. Open issue at [github.com/anthroos/claude-code-review-skill/issues](https://github.com/anthroos/claude-code-review-skill/issues)
+2. Include:
+   - File and line number
+   - What was flagged
+   - Why it's a false positive
+   - Code snippet if possible
+
+This helps improve the skill for everyone.
+
+---
+
+## Default behavior
+
+The skill is designed to minimize false positives out of the box:
+
+- **Baseline filtering** — Only reports issues introduced in current PR/changes (via git blame)
+- **Confidence threshold** — Only reports issues with ≥70% confidence
+- **Skips linter territory** — Doesn't flag formatting, style issues that ESLint/Prettier catch
+- **Skips pre-existing issues** — Won't complain about old code you didn't touch
+- **Skips trivial changes** — Version bumps, whitespace, documentation-only changes
