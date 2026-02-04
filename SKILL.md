@@ -725,8 +725,8 @@ const query = `DROP TABLE old_data`;
 ```
 
 ```python
-# @review-ok: mutable default is reset in __init__
-def __init__(self, items=[]):
+# @review-ok: global cache intentional for performance
+CACHE = {}
 ```
 
 ### Step 5: Report to improve the skill
